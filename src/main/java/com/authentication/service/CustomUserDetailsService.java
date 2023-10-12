@@ -1,6 +1,5 @@
 package com.authentication.service;
 
-import com.authentication.model.User;
 import com.authentication.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,12 +1,15 @@
 package com.authentication.controller;
 
 import com.authentication.exception.TokenException;
+import com.authentication.mapper.UserMapper;
 import com.authentication.model.User;
 import com.authentication.model.VerificationToken;
+import com.authentication.model.dto.UserDto;
 import com.authentication.repository.UserRepository;
 import com.authentication.repository.VerificationTokenRepository;
 import com.authentication.service.RegistrationService;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +23,14 @@ public class RegisterController {
     private final RegistrationService registrationService;
     private final VerificationTokenRepository tokenRepository;
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
+
     @PostMapping
-    public String registerUser(@RequestBody User user) {
+    public String registerUser(@RequestBody @Valid UserDto userDto) {
+
 
         try {
-            String activationUrl=registrationService.registerUser(user);
+            String activationUrl=registrationService.registerUser(userMapper.map(userDto));
             return "registration succeed, activate your account, link is here"+activationUrl;
         }catch (Exception e){
             return e.getMessage();
