@@ -32,8 +32,9 @@ public class SpringSecurityConfig {
                     auth.requestMatchers("/admin").hasRole("ADMIN");
                     auth.requestMatchers("/user").hasAnyRole("ADMIN", "USER");
                     auth.requestMatchers("/").permitAll();
+                    auth.requestMatchers("/register/**").permitAll();
                 })
-                .formLogin().loginPage("/login").permitAll().and()
+                .formLogin().permitAll().and()
                 .logout().permitAll().and()
                 .httpBasic().and()
                 .build();
