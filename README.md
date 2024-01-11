@@ -1,4 +1,5 @@
 **Authentication via email using Spring boot**
+
 Description
 This is a basic project that shows how to authenticate and authorize users using Spring Boot and REST-API.
 Users can sign up, by sending their credentials. After, the activation link is sent in response and also as a letter in the provided email.
